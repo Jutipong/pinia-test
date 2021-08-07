@@ -1,5 +1,6 @@
 <template>
   <h1>Grocery List App Count {{mainStore.ItemCount}}</h1>
+  <h1>Test * 5 = {{test}}</h1>
 
   <button @click="createItem">New Item</button>
 
@@ -17,9 +18,12 @@
 </template>
 
 <script  lang="ts" setup>
+import { computed } from "@vue/runtime-core";
 import { generateFakeData } from "./models/item.model";
 import { useMainStore } from "./store/index";
 const mainStore = useMainStore();
+
+const test = computed(() => mainStore.ItemCount * 5)
 
 function createItem() {
   mainStore.createNewItem(generateFakeData());

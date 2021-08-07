@@ -7,8 +7,8 @@ export const useMainStore = defineStore({
 		items: [] as Item[]
 	}),
 	getters: {
-		ItemCount(items) {
-			return this.items.length
+		ItemCount(state) {
+			return state.items.length
 		}
 	},
 	actions: {
