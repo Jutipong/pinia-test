@@ -19,12 +19,18 @@
 
 <script  lang="ts" setup>
 import { computed } from "@vue/runtime-core";
+import { watch } from "vue";
 import { generateFakeData } from "./models/item.model";
 import { useMainStore } from "./store/index";
 const mainStore = useMainStore();
 
 const test = computed(() => mainStore.ItemCount * 5)
-
+watch(
+  () => mainStore.ItemCount,
+  () => {
+    console.log("test watch");
+  }
+)
 function createItem() {
   mainStore.createNewItem(generateFakeData());
 }
