@@ -1,8 +1,9 @@
 <template>
   <h1>Grocery List App Count {{mainStore.ItemCount}}</h1>
-  <h1>Test * 5 = {{test}}</h1>
+  <!-- <h1>Test * 5 = {{test}}</h1> -->
 
   <button @click="createItem">New Item</button>
+  <button @click="reset">New Item</button>
 
   <div>
     <div
@@ -18,18 +19,14 @@
 </template>
 
 <script  lang="ts" setup>
-import { computed } from "@vue/runtime-core";
-import { watch } from "vue";
+import { watch, computed } from "vue";
 import { generateFakeData } from "./models/item.model";
 import { useMainStore } from "./store/index";
 const mainStore = useMainStore();
 
-const test = computed(() => mainStore.ItemCount * 5)
-watch(
-  () => mainStore.ItemCount,
-  () => {
-    console.log("test watch");
-  }
+watch(mainStore.items, () => {
+  console.log("test watch", mainStore.items);
+}
 )
 function createItem() {
   mainStore.createNewItem(generateFakeData());
@@ -39,6 +36,8 @@ function deleteItem(id: string) {
 }
 function updateItem(id: string) {
   mainStore.updateItem(id, generateFakeData());
+}
+function reset() {
 }
 </script>
 

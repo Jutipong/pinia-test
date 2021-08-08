@@ -4,12 +4,11 @@ import { defineStore } from "pinia";
 export const useMainStore = defineStore({
 	id: "mainStore",
 	state: () => ({
-		items: [] as Item[]
+		items: [] as Item[],
+		CountTotal: 0
 	}),
 	getters: {
-		ItemCount(state) {
-			return state.items.length
-		}
+		doubleCount: (state) => state.CountTotal * 2,
 	},
 	actions: {
 		createNewItem(item: Item) {
